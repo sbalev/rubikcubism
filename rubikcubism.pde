@@ -43,14 +43,3 @@ void setup() {
     rect(c * 100, 0, 100, 100); 
   }
 }
-
-
-void colorToRgb(color c, float[] rgb) {
-  rgb[0] = red(c);
-  rgb[1] = green(c);
-  rgb[2] = blue(c);
-}
-
-color rgbToColor(float[] rgb) {
-  return color(rgb[0], rgb[1], rgb[2]);
-}
