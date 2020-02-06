@@ -20,9 +20,9 @@ void setup() {
   lisa.loadPixels();
   
   // Prepare data for k-means
-  float[][] arrPixels = new float[lisa.pixels.length][];
+  float[][] arrPixels = new float[lisa.pixels.length][3];
   for (int i = 0; i < lisa.pixels.length; i++) {
-    arrPixels[i] = colorToArray(lisa.pixels[i]);
+    colorToRgb(lisa.pixels[i], arrPixels[i]);
   }
   
   // Run k-means
@@ -31,7 +31,7 @@ void setup() {
   
   // use the palette found by k-means
   for (int i = 0; i < lisa.pixels.length; i++) {
-    lisa.pixels[i] = arrayToColor(km.getCentroid(km.getCluster(i)));
+    lisa.pixels[i] = rgbToColor(km.getCentroid(km.getCluster(i)));
   }
 
   lisa.updatePixels();
@@ -39,17 +39,18 @@ void setup() {
   
   stroke(0);
   for (int c = 0; c < rubikColors.length; c++) {
-    fill(arrayToColor(km.getCentroid(c)));
+    fill(rgbToColor(km.getCentroid(c)));
     rect(c * 100, 0, 100, 100); 
   }
 }
 
 
-float[] colorToArray(color c) {
-  float[] a = {red(c), green(c), blue(c)};
-  return a;
+void colorToRgb(color c, float[] rgb) {
+  rgb[0] = red(c);
+  rgb[1] = green(c);
+  rgb[2] = blue(c);
 }
 
-color arrayToColor(float[] a) {
-  return color(a[0], a[1], a[2]);
+color rgbToColor(float[] rgb) {
+  return color(rgb[0], rgb[1], rgb[2]);
 }
