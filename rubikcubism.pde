@@ -16,39 +16,40 @@ void setup() {
   background(0);
 
   PImage lisa = loadImage("joconde1350x1980.jpg");
-  lisa.resize(LISA_W, LISA_H);
+  image(lisa, 1350, 0);
   lisa.loadPixels();
+  
+  // Prepare data for k-means
+  float[][] arrPixels = new float[lisa.pixels.length][];
+  for (int i = 0; i < lisa.pixels.length; i++) {
+    arrPixels[i] = colorToArray(lisa.pixels[i]);
+  }
+  
+  // Run k-means
+  KMeans km = new KMeans(arrPixels, rubikColors.length);
+  km.compute();
+  
+  // use the palette found by k-means
+  for (int i = 0; i < lisa.pixels.length; i++) {
+    lisa.pixels[i] = arrayToColor(km.getCentroid(km.getCluster(i)));
+  }
 
+  lisa.updatePixels();
+  image(lisa, 0, 0);
+  
   stroke(0);
-  int i = 0;
-  for (int y = 0; y < LISA_H; y++) {
-    for (int x = 0; x < LISA_W; x++) {
-      color c = lisa.pixels[i++];
-      fill(c);
-      rect(LISA_W * LISA_PSIZE + x * LISA_PSIZE, y * LISA_PSIZE, LISA_PSIZE, LISA_PSIZE, LISA_PSIZE / 6);
-      fill(closestColor(c, rubikColors));
-      rect(x * LISA_PSIZE, y * LISA_PSIZE, LISA_PSIZE, LISA_PSIZE, LISA_PSIZE / 6);
-    }
+  for (int c = 0; c < rubikColors.length; c++) {
+    fill(arrayToColor(km.getCentroid(c)));
+    rect(c * 100, 0, 100, 100); 
   }
 }
 
 
-float distColor(color c1, color c2) {
-  return dist(red(c1), green(c1), blue(c1), red(c2), green(c2), blue(c2));
+float[] colorToArray(color c) {
+  float[] a = {red(c), green(c), blue(c)};
+  return a;
 }
 
-
-color closestColor(color c, color[] palette) {
-  int closest = 0;
-  float dMin = distColor(c, palette[0]);
-  
-  for (int i = 1; i < palette.length; i++) {
-    float d = distColor(c, palette[i]);
-    if (d < dMin) {
-      closest = i;
-      dMin = d;
-    }
-  }
-  
-  return palette[closest];
+color arrayToColor(float[] a) {
+  return color(a[0], a[1], a[2]);
 }
