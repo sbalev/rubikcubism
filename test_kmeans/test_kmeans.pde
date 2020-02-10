@@ -6,7 +6,7 @@ void setup() {
   size(1600, 1600);
   for (int i = 0; i < points.length; i++) {
     points[i][0] = random(width);
-    points[i][1] = random(width);
+    points[i][1] = random(height);
   }
   km = new KMeans(points, clusterCount);
   rectMode(CENTER);
