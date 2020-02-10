@@ -2,7 +2,7 @@ final int LISA_W = 45;
 final int LISA_H = 66;
 final int LISA_PSIZE = 30;
 
-color[] rubikColors = {
+final color[] RUBIK_COLORS = {
   #009B48, // green
   #B90000, // red
   #0045AD, // blue

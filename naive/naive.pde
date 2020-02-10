@@ -13,7 +13,7 @@ void setup() {
     for (int x = 0; x < LISA_W; x++) {
       fill(lisa.pixels[i]);
       rect(1350 + x * LISA_PSIZE, y * LISA_PSIZE, LISA_PSIZE, LISA_PSIZE, LISA_PSIZE / 6);
-      fill(closestColor(lisa.pixels[i++], rubikColors));
+      fill(closestColor(lisa.pixels[i++], RUBIK_COLORS));
       rect(2700 + x * LISA_PSIZE, y * LISA_PSIZE, LISA_PSIZE, LISA_PSIZE, LISA_PSIZE / 6);
     }
   }
