@@ -1,5 +1,3 @@
-final int LAB = RGB + 1;
-
 void setup() {
   size(1350, 1980);
   background(0);

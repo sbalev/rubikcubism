@@ -10,3 +10,5 @@ final color[] RUBIK_COLORS = {
   #FFFFFF, // white
   #FFD500, // yellow
 };
+
+final int LAB = RGB + 1;
