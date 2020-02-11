@@ -7,8 +7,6 @@ void setup() {
   lisa11.shrink(LISA_PSIZE);
   lisa11.display(0, 0, LISA_PSIZE / 2);
   
-  //lisa11.display(675, 0, LISA_PSIZE / 2);
-
   QImage lisa12 = new QImage(lisa, RUBIK_COLORS.length, LAB);
   lisa12.shrink(LISA_PSIZE);
   lisa12.display(LISA_W * LISA_PSIZE / 2, 0, LISA_PSIZE / 2);
