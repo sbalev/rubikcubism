@@ -13,8 +13,8 @@ void setup() {
   float[][] rubikRgb = new float[k][3];
   
   for (int c = 0; c < k; c++) {
-    colorToLab(lisaQ.palette[c], lisaRgb[c]);
-    colorToLab(RUBIK_COLORS[c], rubikRgb[c]);
+    colorToRgb(lisaQ.palette[c], lisaRgb[c]);
+    colorToRgb(RUBIK_COLORS[c], rubikRgb[c]);
   }
   
   for (int i = 0; i < k; i++) {

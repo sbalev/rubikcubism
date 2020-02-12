@@ -76,4 +76,31 @@ class QImage {
     
     return cMax;
   }
+  
+  void changePalette(color[] newPalette) {
+    // compute cost matrix
+    int k = palette.length;
+    float[][] costs = new float[k][k];
+    float[][] rgb = new float[k][3];
+    float[][] newRgb = new float[k][3];
+    
+    for (int c = 0; c < k; c++) {
+      colorToRgb(palette[c], rgb[c]);
+      colorToRgb(newPalette[c], newRgb[c]);
+    }
+    
+    for (int i = 0; i < k; i++) {
+      for (int j = 0; j < k; j++) {
+        costs[i][j] = sqrt(sqDist(rgb[i], newRgb[j]));
+      }
+    }
+    
+    // assign new colors to current colors  
+    Assignment ass = new Assignment(costs);
+    ass.compute();
+    palette = newPalette;
+    for (int i = 0; i < pixels.length; i++) {
+      pixels[i] = ass.getPair(pixels[i]);
+    }
+  }
 }
