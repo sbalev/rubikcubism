@@ -103,4 +103,12 @@ class QImage {
       pixels[i] = ass.getPair(pixels[i]);
     }
   }
+  
+  float commonPixelsWith(QImage other) {
+    int common = 0;
+    for (int i = 0; i < pixels.length; i++) {
+      if (pixels[i] == other.pixels[i]) common++;
+    }
+    return float(common) / pixels.length;
+  }
 }
