@@ -1,5 +1,5 @@
-final int LISA_W = 45;
-final int LISA_H = 66;
+final int LISA_W = 15 * 3;
+final int LISA_H = 22 * 3;
 final int LISA_PSIZE = 30;
 
 final color[] RUBIK_COLORS = {
