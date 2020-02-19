@@ -20,7 +20,7 @@ class Assignment {
       float c = cost();
       if (c < bestCost) {
         bestCost = c;
-        System.arraycopy(currentSolution, 0, bestSolution, 0, currentSolution.length);
+        arrayCopy(currentSolution, bestSolution);
       }
     }
   }

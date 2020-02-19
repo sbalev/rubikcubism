@@ -36,14 +36,7 @@ class QImage {
   }
 
   void display(int x0, int y0, int pSize) {
-    stroke(0);
-    int i = 0;
-    for (int y = 0; y < height; y++) {
-      for (int x = 0; x < width; x++) {
-        fill(palette[pixels[i++]]);
-        rect(x0 + x * pSize, y0 + y * pSize, pSize, pSize, pSize / 6);
-      }
-    }
+    display(x0, y0, 0, 0, width, height, pSize);
   }
 
   void display(int x0, int y0, int xs, int ys, int w, int h, int pSize) {
