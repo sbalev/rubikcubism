@@ -12,12 +12,12 @@ class Assignment {
     for (int i = 0; i < n; i++) {
       currentSolution[i] = bestSolution[i] = i;
     }
-    bestCost = cost();
+    bestCost = currentCost();
   }
   
   void compute() {
     while(nextPerm(currentSolution)) {
-      float c = cost();
+      float c = currentCost();
       if (c < bestCost) {
         bestCost = c;
         arrayCopy(currentSolution, bestSolution);
@@ -33,7 +33,7 @@ class Assignment {
     return bestSolution[i];
   }
   
-  float cost() {
+  float currentCost() {
     float c = 0;
     for (int i = 0; i < currentSolution.length; i++) {
       c += costs[i][currentSolution[i]];
